@@ -2,12 +2,14 @@ const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
 const webpackNodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
 
 
 let config = {
     // Inform webpack that we're building a bundle
     // for nodeJS, rather than for the browser
     target: 'node',
+    
 
     // tell webpack the root file of our
     // server application
@@ -19,7 +21,12 @@ let config = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build')
     },
-    externals:[webpackNodeExternals()]
+    externals:[webpackNodeExternals()],
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+          debug: true
+        })
+      ]
 
 }
 module.exports = merge(baseConfig, config);

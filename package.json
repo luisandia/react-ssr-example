@@ -4,9 +4,10 @@
     "description": "Server side rendering project",
     "main": "index.js",
     "scripts": {
-        "dev":"npm-run-all --parallel dev:*",
-        "dev:server":"nodemon  --watch build --exec \"node build/bundle.js\"",
+        "dev": "npm-run-all --parallel dev:*",
+        "dev:server": "nodemon  --watch build --exec \"node build/bundle.js\"",
         "dev:build-server": "webpack --config webpack.server.js --watch",
+        "debug:build-server": "node-nightly --inspect-brk  ./node_modules/webpack/bin/webpack.js --config webpack.server.js --watch",
         "dev:build-client": "webpack --config webpack.client.js --watch"
     },
     "author": "",
@@ -41,5 +42,8 @@
         "webpack-dev-server": "3.1.11",
         "webpack-merge": "4.1.0",
         "webpack-node-externals": "1.6.0"
+    },
+    "devDependencies": {
+        "redux-devtools-extension": "^2.13.8"
     }
 }

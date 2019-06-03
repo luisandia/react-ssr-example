@@ -1,6 +1,7 @@
 const path = require('path');
 const baseConfig = require('./webpack.base');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 
 let config = {
 
@@ -13,7 +14,12 @@ let config = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'public')
-    }
+    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+          debug: true
+        })
+      ]
 }
 
 module.exports = merge(baseConfig, config);
