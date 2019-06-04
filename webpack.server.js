@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
 const webpackNodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
+const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
 
 
 let config = {
@@ -21,11 +22,16 @@ let config = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build')
     },
+        optimization: {
+		// We no not want to minimize our code.
+		minimize: false
+	},
     externals:[webpackNodeExternals()],
     plugins: [
         new webpack.LoaderOptionsPlugin({
           debug: true
-        })
+        }),
+        new AsyncChunkNames()
       ]
 
 }

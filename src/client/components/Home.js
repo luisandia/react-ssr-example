@@ -1,4 +1,5 @@
 import React from 'react';
+import { AsyncUsersList } from './AsyncUsersList';
 
 const Home = () => {
     return (

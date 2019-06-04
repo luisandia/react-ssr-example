@@ -2,6 +2,7 @@ const path = require('path');
 const baseConfig = require('./webpack.base');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+const AsyncChunkNames = require('webpack-async-chunk-names-plugin');
 
 let config = {
 
@@ -13,13 +14,21 @@ let config = {
     // that is generated
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'public')
+        path: path.resolve(__dirname, 'public'),
+        chunkFilename: '[name].bundle.js',
+    },
+    optimization: {
+        // We no not want to minimize our code.
+        minimize: false,
     },
     plugins: [
         new webpack.LoaderOptionsPlugin({
-          debug: true
-        })
-      ]
+            debug: true
+        }),
+    
+            new AsyncChunkNames()
+
+    ]
 }
 
 module.exports = merge(baseConfig, config);
