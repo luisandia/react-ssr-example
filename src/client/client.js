@@ -15,7 +15,11 @@ const composeEnhancers = composeWithDevTools({
     // Specify name here, actionsBlacklist, actionsCreators and other options if needed
 });
 
-const store = createStore(reducers, {}, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(
+    reducers,
+    window.INITIAL_STATE,
+    composeEnhancers(applyMiddleware(thunk))
+);
 
 reactDOM.hydrate(
     <Provider store={store}>

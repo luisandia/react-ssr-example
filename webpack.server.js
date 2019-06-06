@@ -10,7 +10,7 @@ let config = {
     // Inform webpack that we're building a bundle
     // for nodeJS, rather than for the browser
     target: 'node',
-    
+
 
     // tell webpack the root file of our
     // server application
@@ -22,17 +22,17 @@ let config = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build')
     },
-        optimization: {
-		// We no not want to minimize our code.
-		minimize: false
-	},
-    externals:[webpackNodeExternals()],
+    optimization: {
+        // We no not want to minimize our code.
+        minimize: false
+    },
+    externals: [webpackNodeExternals()],
     plugins: [
         new webpack.LoaderOptionsPlugin({
-          debug: true
+            debug: true
         }),
         new AsyncChunkNames()
-      ]
+    ]
 
 }
 module.exports = merge(baseConfig, config);

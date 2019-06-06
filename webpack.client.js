@@ -25,9 +25,7 @@ let config = {
         new webpack.LoaderOptionsPlugin({
             debug: true
         }),
-    
-            new AsyncChunkNames()
-
+        new AsyncChunkNames()
     ]
 }
 
