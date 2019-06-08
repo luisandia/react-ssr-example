@@ -10,7 +10,12 @@ import Routes from './Routes';
 import reducers from './reducers';
 import { renderRoutes } from 'react-router-config';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import axios from 'axios';
 
+const axiosInstance = axios.create({
+    baseURL:'/api',
+
+});
 const composeEnhancers = composeWithDevTools({
     // Specify name here, actionsBlacklist, actionsCreators and other options if needed
 });
@@ -18,7 +23,7 @@ const composeEnhancers = composeWithDevTools({
 const store = createStore(
     reducers,
     window.INITIAL_STATE,
-    composeEnhancers(applyMiddleware(thunk))
+    composeEnhancers(applyMiddleware(thunk.withExtraArgument(axiosInstance)))
 );
 
 reactDOM.hydrate(

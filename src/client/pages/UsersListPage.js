@@ -6,7 +6,7 @@ export class UsersListPage extends Component {
 
     componentDidMount() {
 
-        this.props.fetchUsers();
+        // this.props.fetchUsers();
     }
 
     renderUsers() {
@@ -33,6 +33,8 @@ const mapStateToProps = (state) => ({
 });
 
 function loadData(store) {
+    debugger;
+
     return store.dispatch(fetchUsers());
 }
 

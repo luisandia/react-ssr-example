@@ -1,1 +1,95 @@
-exports.ids=[1],exports.modules=[,function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.UsersList=void 0;var r=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),o=n(0),u=function(e){return e&&e.__esModule?e:{default:e}}(o),s=n(4),i=n(3);var c=t.UsersList=function(e){function t(){return function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,o.Component),r(t,[{key:"componentDidMount",value:function(){this.props.fetchUsers()}},{key:"renderUsers",value:function(){return console.log(this.props),this.props.users.map(function(e){return u.default.createElement("li",{key:e.id},e.name)})}},{key:"render",value:function(){return u.default.createElement("div",null,"Here",u.default.createElement("ul",null,this.renderUsers()))}}]),t}();t.default=(0,s.connect)(function(e){return{users:e.users}},{fetchUsers:i.fetchUsers})(c)}];
+exports.ids = [1];
+exports.modules = {
+
+/***/ 22:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.loadData = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterConfig = __webpack_require__(2);
+
+var _Header = __webpack_require__(23);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _actions = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App(_ref) {
+    var route = _ref.route;
+
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_Header2.default, null),
+        (0, _reactRouterConfig.renderRoutes)(route.routes)
+    );
+};
+
+function loadData(_ref2) {
+    var dispatch = _ref2.dispatch;
+
+    return dispatch((0, _actions.fetchCurrentUser)());
+}
+
+exports.loadData = loadData;
+exports.default = App;
+
+/***/ }),
+
+/***/ 23:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(16);
+
+var _reactRedux = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Header(props) {
+    var auth = props.auth;
+    console.log(auth);
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/' },
+            'React SSR'
+        )
+    );
+}
+
+function mapStateToProps(_ref) {
+    var auth = _ref.auth;
+
+    return { auth: auth };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Header);
+
+/***/ })
+
+};;
