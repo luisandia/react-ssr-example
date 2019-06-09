@@ -12,7 +12,7 @@ const LoadingComponent = () => <h3>please wait...</h3>;
 const AsyncUsersListPage = loadable({
     loader: async () => await import('./pages/UsersListPage'),
     loading: LoadingComponent,
-    ssr: false
+    ssr: true
 });
 AsyncUsersListPage.preload()
 
