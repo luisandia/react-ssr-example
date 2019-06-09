@@ -8,4 +8,5 @@ const HomePage = () => {
         </div>
     )
 }
-export default { component: HomePage };
+// export default { component: HomePage };
+export default HomePage;

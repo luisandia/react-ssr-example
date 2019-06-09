@@ -1,42 +1,48 @@
 import React from 'react';
-import HomePage from './pages/HomePage';
-import { loadData } from './pages/UsersListPage';
-import { loadData as loadDataApp } from './App';
+// import HomePage from './pages/HomePage';
+import { loadDataUsers } from './loadData';
+import App from './App';
 import loadable from 'react-loadable';
-function Loading({ error }) {
-    if (error) {
-        return 'Oh nooess!';
-    } else {
-        return <h3>Loading...</h3>;
-    }
-}
-// import UsersListPage from './pages/UsersListPage';
+import NotFoundPage from './pages/NotFoundPage';
+import AdminsListPage from './pages/AdminsListPage';
+// import  UsersListPage from  './pages/UsersListPage';
+
+const LoadingComponent = () => <h3>please wait...</h3>;
+
 const AsyncUsersListPage = loadable({
-    loader: () => import('./pages/UsersListPage'),
-    loading: Loading
+    loader: async () => await import('./pages/UsersListPage'),
+    loading: LoadingComponent,
+    ssr: false
 });
+AsyncUsersListPage.preload()
 
-const AsyncApp = loadable({
-    loader: () => import('./App'),
-    loading: Loading
+
+
+const AsyncHome = loadable({
+    loader: () => import('./pages/HomePage'),
+    loading: LoadingComponent
 });
-
-
 export default [
     {
-        component: AsyncApp,
-        loadData: loadDataApp,
+        ...App,
         routes: [
             {
                 path: '/',
-                ...HomePage,
+                component: AsyncHome,
                 exact: true
             },
             {
-                loadData,
+                ...AdminsListPage,
+                path: '/admins'
+            },
+            {
+                loadData: loadDataUsers,
                 path: '/users',
                 component: AsyncUsersListPage,
                 // component: UsersListPage,
+            },
+            {
+                ...NotFoundPage
             }
         ]
 

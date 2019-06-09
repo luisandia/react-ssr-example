@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions';
+// import  UsersListPage from  './pages/UsersListPage';
 
 export class UsersListPage extends Component {
 
-    componentDidMount() {
+    async componentDidMount() {
 
-        // this.props.fetchUsers();
+        // await this.props.fetchUsers();
+        // import('./pages/UsersListPage').then(Bar => {
+        //     this.setState({ Bar });
+        //   });
     }
 
     renderUsers() {
-        console.log(this.props);
+        console.log("renderizando users")
+        // console.log(this.props);
         return this.props.users.map(user => {
             return <li key={user.id}>{user.name}</li>
         });
@@ -32,13 +37,10 @@ const mapStateToProps = (state) => ({
     users: state.users
 });
 
-function loadData(store) {
-    debugger;
 
-    return store.dispatch(fetchUsers());
-}
 
-export { loadData };
+// export { loadData };
 
 // export default {loadData,component:connect(mapStateToProps, { fetchUsers })(UsersListPage)};
 export default connect(mapStateToProps, { fetchUsers })(UsersListPage);
+// export default UsersListPage;

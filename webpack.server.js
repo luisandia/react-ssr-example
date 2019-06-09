@@ -20,6 +20,7 @@ let config = {
     // that is generated
     output: {
         filename: 'bundle.js',
+        // chunkFilename: '[name].bundle.js',
         path: path.resolve(__dirname, 'build')
     },
     optimization: {
@@ -31,7 +32,7 @@ let config = {
         new webpack.LoaderOptionsPlugin({
             debug: true
         }),
-        new AsyncChunkNames()
+        // new AsyncChunkNames()
     ]
 
 }

@@ -15,4 +15,4 @@ function loadData({ dispatch }) {
 
 export { loadData };
 
-export default App;
+export default { component: App, loadData };

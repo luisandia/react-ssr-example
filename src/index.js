@@ -9,6 +9,7 @@ import createStore from './helpers/createStore';
 import { matchRoutes } from 'react-router-config';
 import Routes from './client/Routes';
 import proxy from 'express-http-proxy';
+import loadable from 'react-loadable';
 
 const app = express();
 
@@ -27,8 +28,13 @@ app.get('*', (req, res) => {
         return route.loadData ? route.loadData(store) : null;
     });
 
-    Promise.all(promises).then(() => {
-        res.send(renderer(req, store));
+    Promise.all(promises).then(async () => {
+        const context = {};
+        const content = await renderer(req, store, context);
+        if (context.notFound) {
+            res.status(404);
+        }
+        res.send(content);
     });
 });
 
