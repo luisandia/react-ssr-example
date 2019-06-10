@@ -5,7 +5,7 @@ import Routes from '../client/Routes';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import serialize from 'serialize-javascript';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 
 
