@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions';
+import { Helmet } from 'react-helmet';
 // import  UsersListPage from  './pages/UsersListPage';
 
 export class UsersListPage extends Component {
@@ -21,10 +22,18 @@ export class UsersListPage extends Component {
         });
     }
 
+    head() {
+        return (
+            <Helmet>
+                <title>{`${this.props.users.length} Users Loaded `}</title>
+                <meta property="og:title" content="Users App"></meta>
+            </Helmet>
+        );
+    }
     render() {
         return (
             <div>
-                Here
+                {this.head()}
                 <ul>
                     {this.renderUsers()}
                 </ul>

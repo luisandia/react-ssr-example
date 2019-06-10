@@ -26,11 +26,18 @@ app.get('*', (req, res) => {
 
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.loadData ? route.loadData(store) : null;
+    }).map(promise => {
+        if (promise) {
+            return new Promise((resolve, reject) => {
+                promise.then(resolve).catch(resolve);
+            });
+        }
     });
 
     Promise.all(promises).then(async () => {
         const context = {};
         const content = await renderer(req, store, context);
+        if (context.url) { return res.redirect(301, context.url); }
         if (context.notFound) {
             res.status(404);
         }
